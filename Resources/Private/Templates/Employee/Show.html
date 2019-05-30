@@ -1,0 +1,99 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Show employee</f:section>
+
+<f:section name="Content">
+    <f:flashMessages />
+
+    <div class="jumbotron">
+        <h1 class="display-4">{employee.name}</h1>
+        <p class="lead">
+            This is a detail view of an employee. At the moment you couldn't update the personal data.
+            But you can add companies he is working for and of course kill (delete) him.
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">Personal data</div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong>Name:</strong> {employee.name}
+                    </p>
+                    <p class="card-text">
+                        <strong>Born in year:</strong> {employee.born}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Feel free to add more properties</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <f:if condition="{employee.companies}">
+                    <f:then>
+                        <div class="card-header">Collection - Worked For</div>
+                        <div class="card-body">
+                            <f:for each="{employee.companies}" as="company" iteration="workedForIteration">
+                                <p class="card-text">
+                                    {company.name}
+                                    <small>
+                                        <a href="{f:uri.action(action:'removeCompany', controller:'Employee', arguments:'{employee:employee.id, company:company.id}')}">
+                                            [Delete]
+                                        </a>
+                                    </small>
+                                </p>
+                            </f:for>
+                        </div>
+                    </f:then>
+                    <f:else>
+                        <div class="card-header">Delete employee</div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                If the employee is not working for any companies, you are able to delete him. In the other case you
+                                have to delete the collections first.
+                            </p>
+                            <p class="card-text text-center">
+                                <a href="{f:uri.action(action:'delete', controller:'Employee', arguments:'{employee:employee.id}')}"
+                                    class="btn btn-outline-danger">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            </p>
+                        </div>
+                    </f:else>
+                </f:if>
+                <div class="card-footer">
+                    <small class="text-muted">You can add more companies</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped mt-5">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">City</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <f:for each="{companies}" as="company" iteration="companyIterator">
+            <tr>
+                <th scope="row">{companyIterator.cycle}</th>
+                <td>{company.name}</td>
+                <td>{company.city}</td>
+                <td>
+                    <a class="btn btn-outline-warning btn-sm"
+                       href="{f:uri.action(action:'addCompany', controller:'Employee', arguments:'{employee:employee.id, company:company.id}')}">
+                       <i class="fa fa-plus"></i> Add a company
+                    </a>
+                </td>
+            </tr>
+        </f:for>
+        </tbody>
+    </table>
+</f:section>

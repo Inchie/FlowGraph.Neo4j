@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title><f:render section="Title" /></title>
+    <link rel="shortcut icon" href="https://flow.neos.io/favicon-16x16.png" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
+    <style>
+        body { padding-top: 70px; }
+        .app { min-height: 100vh; }
+        .app-footer { padding-bottom: 1em; }
+        .zf-green, h2 a { color: #68b604; }
+    </style>
+
+</head>
+<body class="app">
+<header class="app-header">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="#navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Brand -->
+                <a class="navbar-brand" href="/">
+                    <img src="https://flow.neos.io/apple-touch-icon.png" alt="NEOS FLOW" height="28" />
+                </a>
+            </div>
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="{f:uri.action(action:'list', controller:'Company')}" class="nav-link">
+                            <i class="fa fa-building"></i> Company
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{f:uri.action(action:'list', controller:'Employee')}" class="nav-link">
+                            <i class="fa fa-users"></i> Employee
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{f:uri.action(action:'list', controller:'Customer')}" class="nav-link">
+                            <i class="fa fa-shopping-cart"></i> Customer
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="app-content">
+    <main class="container">
+        <f:render section="Content" />
+    </main>
+</div>
+
+<footer class="app-footer">
+    <div class="container">
+        <hr />
+        <p>
+            &copy; 2005 - <?=date('Y')?> by Timo Nussbaum Technologies Ltd. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+

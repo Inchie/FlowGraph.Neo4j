@@ -1,0 +1,16 @@
+FlowGraph:
+  Neo4j:
+    storage:
+      protocol: http
+      host: 172.16.239.29
+      port: 7474
+      user: neo4j
+      password: test
+
+
+Neos:
+  Flow:
+    mvc:
+      routes:
+        'FlowGraph.Neo4j':
+          position: 'start'

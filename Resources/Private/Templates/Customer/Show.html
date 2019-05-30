@@ -1,0 +1,114 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Show company</f:section>
+
+<f:section name="Content">
+    <f:flashMessages />
+
+    <div class="jumbotron">
+        <h1 class="display-4">{customer.name}</h1>
+        <p class="lead">
+            This is a detail view of a customer. At the moment you couldn't update the customer data.
+            But you can vote and of course kill (delete) the customer.
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">Customer data</div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong>Name:</strong> {customer.name}
+                    </p>
+                    <p class="card-text">
+                        <strong>Login:</strong> {customer.login}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Feel free to add more properties</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <f:if condition="{customer.ratings}">
+                    <f:then>
+                        <div class="card-header">Collections - Votings for companies</div>
+                        <div class="card-body">
+                            <f:for each="{customer.ratings}" as="rating" iteration="ratingIteration">
+                                <p class="card-text">
+                                    {rating.company.name} | Value: <strong>{rating.score}</strong>
+                                    <small>
+                                        <a href="{f:uri.action(action:'removeRatingForACompany', controller:'Customer', arguments:'{customer:customer.id, company:rating.company.id}')}">
+                                            [Delete]
+                                        </a>
+                                    </small>
+                                </p>
+                            </f:for>
+                        </div>
+                    </f:then>
+                    <f:else>
+                        <div class="card-header">Delete customer</div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                If the company have no employees, you are able to delete it. In the other case you
+                                have to delete the collections first.
+                            </p>
+                            <p class="card-text text-center">
+                                <a href="{f:uri.action(action:'delete', controller:'Customer', arguments:'{customer:customer.id}')}"
+                                   class="btn btn-outline-danger">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            </p>
+                        </div>
+                    </f:else>
+                </f:if>
+                <div class="card-footer">
+                    <small class="text-muted">You can vote!</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <f:if condition="{companies}">
+        <f:then>
+            <table class="table table-striped mt-5">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">City</th>
+                    <th scope="col">Vote</th>
+                </tr>
+                </thead>
+                <tbody>
+                <f:for each="{companies}" as="company" iteration="companyIterator">
+                    <tr>
+                        <th scope="row">{companyIterator.cycle}</th>
+                        <td>{company.name}</td>
+                        <td>{company.city}</td>
+                        <td>
+                            <a href="{f:uri.action(action:'rateNegative', controller:'Customer', arguments:'{customer:customer.id, company:company.id}')}"
+                               class="btn btn-outline-primary btn-sm">
+                               <i class="fa fa-thumbs-down"></i>
+                            </a>
+                            <a href="{f:uri.action(action:'ratePositive', controller:'Customer', arguments:'{customer:customer.id, company:company.id}')}"
+                                class="btn btn-outline-primary btn-sm">
+                                <i class="fa fa-thumbs-up"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </f:for>
+                </tbody>
+            </table>
+        </f:then>
+        <f:else>
+            <div class="alert alert-warning mt-5">
+                I'm afraid. No companies were found. Before you can rate a company you have to create one.
+            </div>
+        </f:else>
+    </f:if>
+
+
+</f:section>

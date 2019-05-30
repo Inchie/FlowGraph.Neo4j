@@ -1,0 +1,109 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Show company</f:section>
+
+<f:section name="Content">
+    <f:flashMessages />
+
+    <div class="jumbotron">
+        <h1 class="display-4">{company.name}</h1>
+        <p class="lead">
+            This is a detail view of a company. At the moment you couldn't update the company data.
+            But you can add employees which are working for it and of course kill (delete) the company.
+        </p>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">Company data</div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong>Name:</strong> {company.name}
+                    </p>
+                    <p class="card-text">
+                        <strong>City:</strong> {company.city}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Feel free to add more properties</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <f:if condition="{company.employees}">
+                    <f:then>
+                        <div class="card-header">Collections - Working for the company</div>
+                        <div class="card-body">
+                            <f:for each="{company.employees}" as="employee" iteration="workingForIteration">
+                                <p class="card-text">
+                                    {employee.name}
+                                    <small>
+                                        <a href="{f:uri.action(action:'removeEmployee', controller:'Company', arguments:'{company:company.id, employee:employee.id}')}">
+                                            [Delete]
+                                        </a>
+                                    </small>
+                                </p>
+                            </f:for>
+                        </div>
+                    </f:then>
+                    <f:else>
+                        <div class="card-header">Delete company</div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                If the company have no employees, you are able to delete it. In the other case you
+                                have to delete the collections first.
+                            </p>
+                            <p class="card-text text-center">
+                                <a href="{f:uri.action(action:'delete', controller:'Company', arguments:'{company:company.id}')}"
+                                    class="btn btn-outline-danger">
+                                    <i class="fa fa-trash"></i> Delete
+                                </a>
+                            </p>
+                        </div>
+                    </f:else>
+                </f:if>
+                <div class="card-footer">
+                    <small class="text-muted">You can add more companies</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <f:if condition="{employees}">
+        <f:then>
+            <table class="table table-striped mt-5">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Born</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <f:for each="{employees}" as="employee" iteration="employeeIterator">
+                    <tr>
+                        <th scope="row">{employeeIterator.cycle}</th>
+                        <td>{employee.name}</td>
+                        <td>{employee.born}</td>
+                        <td>
+                            <a class="btn btn-outline-warning btn-sm"
+                               href="{f:uri.action(action:'addEmployee', controller:'Company', arguments:'{company:company.id, employee:employee.id}')}">
+                                <i class="fa fa-plus"></i> Add the employee
+                            </a>
+                        </td>
+                    </tr>
+                </f:for>
+                </tbody>
+            </table>
+        </f:then>
+        <f:else>
+            <div class="alert alert-warning mt-5">
+                I'm afraid. No employees were found. Before you can add an employee to the company you have to create one.
+            </div>
+        </f:else>
+    </f:if>
+
+</f:section>

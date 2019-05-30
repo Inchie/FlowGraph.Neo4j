@@ -1,0 +1,165 @@
+#                                                                        #
+# Default routes configuration for the Welcome package                   #
+#                                                                        #
+
+-
+  name: 'Dashboard screen'
+  uriPattern: 'dashboard'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Dashboard'
+    '@action':     'index'
+    '@format':     'html'
+
+-
+  name: 'Redirect to dashboard screen'
+  uriPattern: ''
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Dashboard'
+    '@action':     'redirect'
+    '@format':     'html'
+
+-
+  name: 'Company screen'
+  uriPattern: 'company(/{@action})'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Company'
+    '@action':     'index'
+    '@format':     'html'
+
+-
+  name: 'Show company screen'
+  uriPattern: 'company/show/company={company}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Company'
+    '@action':     'show'
+    '@format':     'html'
+
+-
+  name: 'Add a employee to a company'
+  uriPattern: 'company/addemployee/company={company}/employee={employee}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Company'
+    '@action':     'addEmployee'
+    '@format':     'html'
+
+-
+  name: 'Remove a employee from a company'
+  uriPattern: 'company/removeemployee/company={company}/employee={employee}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Company'
+    '@action':     'removeEmployee'
+    '@format':     'html'
+
+-
+  name: 'Delete company screen'
+  uriPattern: 'company/delete/company={company}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Company'
+    '@action':     'delete'
+    '@format':     'html'
+
+-
+  name: 'Employee screen'
+  uriPattern: 'employee(/{@action})'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Employee'
+    '@action':     'index'
+    '@format':     'html'
+
+-
+  name: 'Employee screen'
+  uriPattern: 'employee/show/employee={employee}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Employee'
+    '@action':     'show'
+    '@format':     'html'
+
+-
+  name: 'Add a company to an employee'
+  uriPattern: 'employee/addcompany/employee={employee}/company={company}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Employee'
+    '@action':     'addCompany'
+    '@format':     'html'
+
+-
+  name: 'Remove a company from an employee'
+  uriPattern: 'employee/removecompany/employee={employee}/company={company}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Employee'
+    '@action':     'removeCompany'
+    '@format':     'html'
+
+-
+  name: 'Delete an employee'
+  uriPattern: 'employee/delete/employee={employee}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Employee'
+    '@action':     'delete'
+    '@format':     'html'
+
+-
+  name: 'Customer screen'
+  uriPattern: 'customer(/{@action})'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Customer'
+    '@action':     'index'
+    '@format':     'html'
+
+-
+  name: 'Show an customer'
+  uriPattern: 'customer/show/customer={customer}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Customer'
+    '@action':     'show'
+    '@format':     'html'
+
+-
+  name: 'Positive rating for a company'
+  uriPattern: 'customer/rate/positive/customer={customer}/company={company}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Customer'
+    '@action':     'ratePositive'
+    '@format':     'html'
+
+-
+  name: 'Negative rating for a company'
+  uriPattern: 'customer/rate/negative/customer={customer}/company={company}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Customer'
+    '@action':     'rateNegative'
+    '@format':     'html'
+
+-
+  name: 'Remove rating for a company'
+  uriPattern: 'customer/removerating/customer={customer}/company={company}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Customer'
+    '@action':     'removeRatingForACompany'
+    '@format':     'html'
+
+-
+  name: 'Delete an customer'
+  uriPattern: 'customer/delete/customer={customer}'
+  defaults:
+    '@package':    'FlowGraph.Neo4j'
+    '@controller': 'Customer'
+    '@action':     'delete'
+    '@format':     'html'

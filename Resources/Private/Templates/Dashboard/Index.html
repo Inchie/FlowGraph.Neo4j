@@ -1,0 +1,84 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Dashboard of Neo4j</f:section>
+
+<f:section name="Content">
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to a Neo4j Example with FLOW</h1>
+        <p class="lead">
+            This example shows how you can run the PHP framework <a href="https://flow.neos.io">Flow</a> with the graph
+            database <a href="https://neo4j.com/">Neo4j</a>.
+        </p>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="row pt-3">
+                <div class="col-lg-6">
+                    <h2>
+                        <a href="{f:uri.action(action:'list', controller:'Company')}" class="nav-link">
+                            <i class="fa fa-building"></i> Company
+                        </a>
+                    </h2>
+                    <p>
+                        Create a company with the properties <strong>name</strong> and <strong>city</strong>. You can add employees to this
+                        company and customers can rate for it.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <f:render partial="Company/New" arguments="{newCompany:newCompany}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row pt-3">
+                <div class="col-lg-6">
+                    <h2>
+                        <a href="{f:uri.action(action:'list', controller:'Employee')}" class="nav-link">
+                            <i class="fa fa-users"></i> Employee
+                        </a>
+                    </h2>
+                    <p>
+                        Create a employee with the properties <strong>name</strong> and <strong>born</strong>.
+                        Employees can work for a company.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <f:render partial="Employee/New" arguments="{newEmployee:newEmployee}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="row pt-3">
+                <div class="col-lg-6">
+                    <h2>
+                        <a href="/elastic" class="nav-link">
+                            <i class="fa fa-shopping-cart"></i> Customer
+                        </a>
+                    </h2>
+                    <p>
+                        Create a customer with the properties <strong>name</strong> and <strong>login</strong>.
+                        Customer can rate the companies.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <f:render partial="Customer/New" arguments="{newCustomer:newCustomer}" />
+                        </div>
+                    </div
+                </div>
+            </div>
+        </div>
+    </div>
+</f:section>

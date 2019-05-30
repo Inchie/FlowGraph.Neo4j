@@ -1,0 +1,23 @@
+{
+    "name": "inchie/flowgraph-neo4j",
+    "description": "Application for the Neo4j example with FLOW",
+    "type": "neos-package",
+    "authors": [{
+        "name": "Timo Nussbaum",
+        "email": "timo.nussbaum@gmx.de"
+    }],
+    "minimum-stability": "dev",
+    "require": {
+        "neos/flow": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "FlowGraph\\Neo4j\\": "Classes/"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "FlowGraph.Neo4j"
+        }
+    }
+}

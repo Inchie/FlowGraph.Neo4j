@@ -1,0 +1,64 @@
+<f:layout name="Default" />
+
+<f:section name="Title">Dashboard of Neo4j</f:section>
+
+<f:section name="Content">
+
+    <f:flashMessages />
+    <div class="jumbotron">
+        <h1 class="display-4">List companies</h1>
+        <p class="lead">This is a list view of the companies.</p>
+    </div>
+
+    <f:if condition="{companies}">
+        <f:then>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">City</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <f:for each="{companies}" as="company" iteration="fooIterator">
+                    <tr>
+                        <th scope="row">{fooIterator.cycle}</th>
+                        <td>{company.name}</td>
+                        <td>{company.city}</td>
+                        <td>
+                            <a href="{f:uri.action(action:'show', controller:'Company', arguments:'{company:company.id}')}"
+                               class="btn btn-outline-primary btn-sm">
+                                <i class="fa fa-eye"></i> Show
+                            </a>
+                        </td>
+                    </tr>
+                </f:for>
+                </tbody>
+            </table>
+        </f:then>
+        <f:else>
+            <div class="alert alert-warning">
+                I'am afraid. No companies were found.
+            </div>
+        </f:else>
+    </f:if>
+
+    <div class="row mt-5">
+        <div class="col-lg-6">
+            <h2>
+                <a href="{f:uri.action(action:'list', controller:'Company')}" class="nav-link">
+                    <i class="fa fa-building"></i> Company
+                </a>
+            </h2>
+        </div>
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-body">
+                    <f:render partial="Company/New" arguments="{newCompany:newCompany}" />
+                </div>
+            </div>
+        </div>
+    </div>
+</f:section>
